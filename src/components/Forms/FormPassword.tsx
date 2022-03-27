@@ -2,6 +2,7 @@ import { useField, useFormik } from 'formik'
 import React from 'react'
 import { Form } from 'react-bootstrap'
 import * as yup from 'yup'
+import propTypes from 'prop-types'
 
 interface Props {
   password: string
@@ -14,8 +15,8 @@ const validationSchema = yup.object({
     .required('Password is required')
 })
 
-export const FormPassword = ({ password, ...props }: Props) => {
-  const formik = useFormik({
+export const FormPassword = ({ password }: Props) => {
+  const { handleChange, values } = useFormik({
     initialValues: {
       password
     },
@@ -30,11 +31,14 @@ export const FormPassword = ({ password, ...props }: Props) => {
       <Form.Label>Password</Form.Label>
       <Form.Control
         type="password"
-        onChange={formik.handleChange}
-        value={formik.values.password}
+        name={'password'}
+        onChange={handleChange}
         placeholder="Enter password"
-        name={formik.values.password}
       />
     </Form.Group>
   )
+}
+
+FormPassword.propTypes = {
+  password: propTypes.string.isRequired,
 }

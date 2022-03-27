@@ -1,17 +1,21 @@
 import { FormikValues, useFormik } from 'formik'
-import React, { useState } from 'react'
-import { Button, Card, Col, Container, Row } from 'react-bootstrap'
+import { Button, Card, Col, Row } from 'react-bootstrap'
 import FormEmail from '../components/Forms/FormEmail'
 import { FormPassword } from '../components/Forms/FormPassword'
 
-const Login = () => {
+interface Props {
+  email: string
+  password: string
+}
+
+const Login = ({ email, password }: Props) => {
   const { handleChange, values, handleSubmit } = useFormik<FormikValues>({
     initialValues: {
       email: '',
       password: ''
     },
-    onSubmit: (values) => {
-      console.log(values)
+    onSubmit: (values: FormikValues) => {
+      console.log(values.email)
     }
   })
   return (
@@ -29,10 +33,12 @@ const Login = () => {
                   <FormEmail />
                 </Col>
                 <Col md={12} className="mb-3">
-                  <FormPassword password={values.password} />
+                  <FormPassword value={values.password} />
                 </Col>
                 <Col md={12} className="d-flex justify-content-end">
-                  <Button variant="primary">Submit</Button>
+                  <Button type="submit" variant="primary">
+                    Submit
+                  </Button>
                 </Col>
               </Row>
             </form>
