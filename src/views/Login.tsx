@@ -3,6 +3,7 @@ import { Card, Col, Row } from 'react-bootstrap'
 import FormEmail from '../components/Forms/FormEmail'
 import { FormPassword } from '../components/Forms/FormPassword'
 import { BtnSubmit } from '../components/Buttons/BtnSubmit'
+import { Link } from 'react-router-dom'
 
 interface Props {
   email: string
@@ -36,6 +37,11 @@ const Login = () => {
                 <Col md={12} className="mb-3">
                   <FormPassword password={values.password} />
                 </Col>
+
+                <Col md={12} className="mb-3 d-flex justify-content-center">
+                  <Link to="register" className="text-decoration-none">Registrarme</Link>
+                </Col>
+
                 <Col md={12} className="d-flex justify-content-end">
                   <BtnSubmit />
                 </Col>

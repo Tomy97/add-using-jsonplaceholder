@@ -10,6 +10,7 @@ import Albumes from './views/Albumes'
 import Todos from './views/Todos'
 import { Suspense } from 'react'
 import { Container } from 'react-bootstrap'
+import { Register } from './views/Register'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Container>
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route
               path="*"
               element={
