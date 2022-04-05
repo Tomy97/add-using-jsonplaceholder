@@ -1,7 +1,8 @@
 import { FormikValues, useFormik } from 'formik'
-import { Button, Card, Col, Row } from 'react-bootstrap'
+import { Card, Col, Row } from 'react-bootstrap'
 import FormEmail from '../components/Forms/FormEmail'
 import { FormPassword } from '../components/Forms/FormPassword'
+import { BtnSubmit } from '../components/Buttons/BtnSubmit'
 
 interface Props {
   email: string
@@ -36,9 +37,7 @@ const Login = ({ email, password }: Props) => {
                   <FormPassword value={values.password} />
                 </Col>
                 <Col md={12} className="d-flex justify-content-end">
-                  <Button type="submit" variant="primary">
-                    Submit
-                  </Button>
+                  <BtnSubmit />
                 </Col>
               </Row>
             </form>
