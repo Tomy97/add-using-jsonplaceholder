@@ -21,9 +21,9 @@ export const FormPassword = ({ password }: Props) => {
       password
     },
     validationSchema,
-    onSubmit: (values) => {
-      console.log(values)
-    }
+    onSubmit: (values: any) => {
+      console.log(values.password)
+    }    
   })
 
   return (

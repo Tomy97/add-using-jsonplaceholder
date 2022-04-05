@@ -9,7 +9,7 @@ interface Props {
   password: string
 }
 
-const Login = ({ email, password }: Props) => {
+const Login = () => {
   const { handleChange, values, handleSubmit } = useFormik<FormikValues>({
     initialValues: {
       email: '',
@@ -34,7 +34,7 @@ const Login = ({ email, password }: Props) => {
                   <FormEmail />
                 </Col>
                 <Col md={12} className="mb-3">
-                  <FormPassword value={values.password} />
+                  <FormPassword password={values.password} />
                 </Col>
                 <Col md={12} className="d-flex justify-content-end">
                   <BtnSubmit />
