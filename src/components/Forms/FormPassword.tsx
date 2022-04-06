@@ -5,7 +5,7 @@ import * as yup from 'yup'
 import propTypes from 'prop-types'
 
 interface Props {
-  password: string
+  value: string
   label: string
 }
 
@@ -16,14 +16,14 @@ const validationSchema = yup.object({
     .required('Password is required')
 })
 
-export const FormPassword = ({ password, label }: Props) => {
+export const FormPassword = ({ value, label }: Props) => {
   const { handleChange, values } = useFormik({
     initialValues: {
-      password
+      password: ''
     },
     validationSchema,
     onSubmit: (values: { password: string }) => {
-      console.log(password);
+      console.log(value)
     }
   })
 
@@ -32,7 +32,8 @@ export const FormPassword = ({ password, label }: Props) => {
       <Form.Label>{label}</Form.Label>
       <Form.Control
         type="password"
-        name={password}
+        name="password"
+        value={values.password}
         onChange={handleChange}
         placeholder="Enter password"
       />
@@ -41,6 +42,6 @@ export const FormPassword = ({ password, label }: Props) => {
 }
 
 FormPassword.propTypes = {
-  password: propTypes.string.isRequired,
+  value: propTypes.string.isRequired,
   label: propTypes.string.isRequired
 }

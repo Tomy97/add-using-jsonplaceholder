@@ -4,19 +4,23 @@ import FormEmail from '../components/Forms/FormEmail'
 import { FormPassword } from '../components/Forms/FormPassword'
 import { BtnSubmit } from '../components/Buttons/BtnSubmit'
 import { Link } from 'react-router-dom'
+import { UseLoading } from '../hooks/UseLoading'
+import { useState } from 'react'
 
 interface Props {
   email: string
   password: string
 }
 
-const Login = () => {
+const Login = ({ email, password }: Props) => {
+  const [loading, setLoading] = useState(false)
   const { handleChange, values, handleSubmit } = useFormik<FormikValues>({
     initialValues: {
-      email: '',
+      email: email,
       password: ''
     },
-    onSubmit: (values: FormikValues) => {
+    onSubmit: async (values: FormikValues) => {
+      await setLoading(true)
       console.log(values.email)
     }
   })
@@ -34,14 +38,20 @@ const Login = () => {
                 <Col md={12}>
                   <FormEmail />
                 </Col>
-                <Col md={12} className="mb-3">
-                  <FormPassword password={values.password} />
+                <Col md={12}>
+                  <FormPassword value={values.password} label="Password" />
                 </Col>
-
+                {values.password}
                 <Col md={12} className="mb-3 d-flex justify-content-center">
-                  <Link to="register" className="text-decoration-none">Registrarme</Link>
+                  <Link to="register" className="text-decoration-none">
+                    Registrarme
+                  </Link>
                 </Col>
-
+                {loading ? (
+                  <Col md={12} className="mb-3 d-flex justify-content-center">
+                    <UseLoading />
+                  </Col>
+                ) : null}
                 <Col md={12} className="d-flex justify-content-end">
                   <BtnSubmit />
                 </Col>
